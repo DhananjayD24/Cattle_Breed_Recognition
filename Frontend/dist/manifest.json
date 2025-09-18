@@ -19,12 +19,12 @@
   ],
   "screenshots": [
     {
-      "src": "/screenshot-desktop.png",
+      "src": "/1080x1920.jpg",
       "sizes": "1080x1920",
       "type": "image/png"
     },
     {
-      "src": "/screenshot-mobile.png",
+      "src": "/1920x1080.jpg.png",
       "sizes": "1920x1080",
       "type": "image/png",
       "form_factor": "wide"
