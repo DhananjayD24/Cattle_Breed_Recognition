@@ -7,7 +7,7 @@ import mongoose from "mongoose";
 import { recognizeBreed } from "./controllers/breedController.js";
 import { recognizeBreedRoboflow } from "./controllers/roboController.js";
 import animalRoutes from "./routes/animalRoutes.js";
-
+import statsRoutes from "./routes/statsRoutes.js";
 
 dotenv.config();
 
@@ -15,7 +15,7 @@ const app = express();
 const upload = multer({ dest: "uploads/" });
 
 // Middleware
-app.use(cors());
+app.use(cors({ origin: "" }));
 app.use(express.json());
 
 mongoose
@@ -28,6 +28,7 @@ mongoose
 app.post("/api/breed/recognize", upload.single("image"), recognizeBreed);
 app.post("/api/breed/roboflow", upload.single("image"), recognizeBreedRoboflow);
 app.use("/api/animals", animalRoutes);
+app.use("/api/stats", statsRoutes);
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {

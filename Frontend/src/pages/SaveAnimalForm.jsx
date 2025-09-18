@@ -72,24 +72,24 @@ export default function SaveAnimalForm({ prediction, onClose }) {
       {/* Toast Notification */}
       {toast && (
         <div
-          className={`fixed top-4 right-4 px-4 py-2 rounded shadow-lg text-white text-sm transition-opacity
-          ${toast.type === "success" ? "bg-green-600" : "bg-red-600"}`}
+          className={`fixed top-4 right-4 px-4 py-2 rounded shadow-lg text-white text-sm transition-opacity z-50
+          ${toast.type === "success" ? "bg-green-600" : "bg-red-600"} max-w-[90vw] sm:max-w-md`}
         >
           {toast.message}
         </div>
       )}
 
-      <div className="fixed inset-0 bg-black/40 flex justify-center items-center z-50 backdrop-blur-sm">
+      <div className="fixed inset-0 bg-black/40 flex justify-center items-center z-50 backdrop-blur-sm p-4">
         <form
           onSubmit={handleSubmit}
-          className="bg-white rounded-2xl p-6 w-full max-w-md shadow-2xl space-y-4 border border-gray-100"
+          className="bg-white rounded-2xl p-4 sm:p-6 w-full max-w-md shadow-2xl space-y-4 border border-gray-100 max-h-[90vh] overflow-y-auto"
         >
-          <h2 className="text-2xl font-bold text-center bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent">
+          <h2 className="text-xl sm:text-2xl font-bold text-center bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent">
             Save Animal to Database
           </h2>
 
           {/* Breed info */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block font-medium text-gray-700">
                 Breed (AI)
@@ -98,7 +98,7 @@ export default function SaveAnimalForm({ prediction, onClose }) {
                 type="text"
                 value={form.breed}
                 readOnly
-                className="w-full border px-3 py-2 rounded bg-gray-100 cursor-not-allowed"
+                className="w-full border px-3 py-2 rounded bg-gray-100 cursor-not-allowed text-sm sm:text-base"
               />
             </div>
             <div>
@@ -107,9 +107,9 @@ export default function SaveAnimalForm({ prediction, onClose }) {
               </label>
               <input
                 type="number"
-                value={(form.breedConfidence * 100).toFixed(2)}
+                value={(form.breedConfidence).toFixed(2)}
                 readOnly
-                className="w-full border px-3 py-2 rounded bg-gray-100 cursor-not-allowed"
+                className="w-full border px-3 py-2 rounded bg-gray-100 cursor-not-allowed text-sm sm:text-base"
               />
             </div>
           </div>
@@ -123,20 +123,21 @@ export default function SaveAnimalForm({ prediction, onClose }) {
                 value={form.earTag}
                 onChange={handleChange}
                 required
-                className="w-full border px-3 py-2 rounded"
+                className="w-full border px-3 py-2 rounded text-sm sm:text-base"
               />
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="block font-medium">Species</label>
                 <select
                   name="species"
                   value={form.species}
                   onChange={handleChange}
-                  className="w-full border px-3 py-2 rounded"
+                  className="w-full border px-3 py-2 rounded text-sm sm:text-base"
                 >
-                  <option value="Cattle">Cow</option>
+                  <option value="Cow">Cow</option>
                   <option value="Buffalo">Buffalo</option>
+                  <option value="Ox">Ox</option>
                 </select>
               </div>
               <div>
@@ -145,7 +146,7 @@ export default function SaveAnimalForm({ prediction, onClose }) {
                   name="gender"
                   value={form.gender}
                   onChange={handleChange}
-                  className="w-full border px-3 py-2 rounded"
+                  className="w-full border px-3 py-2 rounded text-sm sm:text-base"
                 >
                   <option value="">Select</option>
                   <option value="Female">Female</option>
@@ -161,7 +162,7 @@ export default function SaveAnimalForm({ prediction, onClose }) {
                 value={form.ageMonths}
                 onChange={handleChange}
                 required
-                className="w-full border px-3 py-2 rounded"
+                className="w-full border px-3 py-2 rounded text-sm sm:text-base"
               />
             </div>
           </div>
@@ -177,50 +178,50 @@ export default function SaveAnimalForm({ prediction, onClose }) {
               value={form.ownerName}
               onChange={handleChange}
               required
-              className="w-full border px-3 py-2 rounded"
+              className="w-full border px-3 py-2 rounded text-sm sm:text-base"
             />
             <input
               name="ownerContact"
               placeholder="Contact Number"
               value={form.ownerContact}
               onChange={handleChange}
-              className="w-full border px-3 py-2 rounded"
+              className="w-full border px-3 py-2 rounded text-sm sm:text-base"
             />
             <input
               name="ownerVillage"
               placeholder="Village"
               value={form.ownerVillage}
               onChange={handleChange}
-              className="w-full border px-3 py-2 rounded"
+              className="w-full border px-3 py-2 rounded text-sm sm:text-base"
             />
             <input
               name="ownerDistrict"
               placeholder="District"
               value={form.ownerDistrict}
               onChange={handleChange}
-              className="w-full border px-3 py-2 rounded"
+              className="w-full border px-3 py-2 rounded text-sm sm:text-base"
             />
             <input
               name="ownerState"
               placeholder="State"
               value={form.ownerState}
               onChange={handleChange}
-              className="w-full border px-3 py-2 rounded"
+              className="w-full border px-3 py-2 rounded text-sm sm:text-base"
             />
           </div>
 
           {/* Buttons */}
-          <div className="flex justify-end space-x-3 pt-4">
+          <div className="flex flex-col-reverse sm:flex-row justify-end gap-3 pt-4">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 rounded border hover:bg-gray-100"
+              className="px-4 py-2 rounded border hover:bg-gray-100 text-sm sm:text-base mt-2 sm:mt-0"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-5 py-2 bg-gradient-to-r from-blue-600 to-green-500 text-white rounded hover:opacity-90"
+              className="px-5 py-2 bg-gradient-to-r from-blue-600 to-green-500 text-white rounded hover:opacity-90 text-sm sm:text-base"
             >
               Save
             </button>

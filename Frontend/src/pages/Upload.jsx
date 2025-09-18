@@ -103,7 +103,7 @@ const Upload = () => {
       {/* for roboflow use "handleUploadRobo" */}
       {!result ? (
         <ImageUploader
-          onUploadComplete={handleUploadRobo}
+          onUploadComplete={handleUploadComplete}
           isLoading={isLoading}
         />
       ) : (
