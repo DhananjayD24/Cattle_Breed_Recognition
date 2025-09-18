@@ -2,8 +2,11 @@ import express from "express";
 import cors from "cors";
 import multer from "multer";
 import dotenv from "dotenv";
+import mongoose from "mongoose";
+
 import { recognizeBreed } from "./controllers/breedController.js";
 import { recognizeBreedRoboflow } from "./controllers/roboController.js";
+import animalRoutes from "./routes/animalRoutes.js";
 
 
 dotenv.config();
@@ -15,10 +18,16 @@ const upload = multer({ dest: "uploads/" });
 app.use(cors());
 app.use(express.json());
 
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.error("MongoDB connection error:", err));
+
+
 // Route to upload an image and get breed prediction
 app.post("/api/breed/recognize", upload.single("image"), recognizeBreed);
 app.post("/api/breed/roboflow", upload.single("image"), recognizeBreedRoboflow);
-
+app.use("/api/animals", animalRoutes);
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import ImageUploader from "../components/ImageUploader";
 import BreedResultCard from "../components/BreedResultCard";
+import SaveAnimalForm from "../pages/SaveAnimalForm";
 
 const Upload = () => {
   const [result, setResult] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
+  const [showForm, setShowForm] = useState(false);
   const handleUploadComplete = async (uploadedImage) => {
     try {
       setIsLoading(true);
@@ -106,7 +107,26 @@ const Upload = () => {
           isLoading={isLoading}
         />
       ) : (
+        <>
         <BreedResultCard result={result} onNewUpload={handleNewUpload} />
+        <div className="mt-4">
+            <button
+              onClick={() => setShowForm(true)}
+              className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+            >
+              Save to Database
+            </button>
+          </div>
+        </>
+        
+        
+      )}
+
+      {showForm && (
+        <SaveAnimalForm
+          prediction={result}
+          onClose={() => setShowForm(false)}
+        />
       )}
     </div>
   );
