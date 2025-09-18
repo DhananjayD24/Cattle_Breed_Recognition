@@ -49,7 +49,7 @@ export default function SaveAnimalForm({ prediction, onClose }) {
       };
 
       const res = await fetch(
-        `${import.meta.env.VITE_APP_API_URL}/api/animals`,
+        `https://cattle-breed-recognition.onrender.com/api/animals`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
