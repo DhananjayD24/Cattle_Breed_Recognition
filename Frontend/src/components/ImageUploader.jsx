@@ -4,6 +4,8 @@ import { FileImage, CheckCircle } from 'lucide-react';
 const ImageUploader = ({ onUploadComplete, isLoading }) => {
   const [dragActive, setDragActive] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
+const [preview, setPreview] = useState(null);
+  
 
   const handleDrag = (e) => {
     e.preventDefault();
@@ -32,22 +34,23 @@ const ImageUploader = ({ onUploadComplete, isLoading }) => {
   };
 
   const handleFile = (file) => {
-    if (file.type.startsWith('image/')) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setSelectedImage(e.target.result);
-      };
-      reader.readAsDataURL(file);
-    } else {
-      alert('Please select an image file.');
-    }
-  };
+  if (file.type.startsWith('image/')) {
+    setSelectedImage(file);        // <-- store the real File
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      setPreview(e.target.result); // <-- separate preview
+    };
+    reader.readAsDataURL(file);
+  } else {
+    alert('Please select an image file.');
+  }
+};
 
   const handleUpload = () => {
-    if (selectedImage) {
-      onUploadComplete(selectedImage);
-    }
-  };
+  if (selectedImage) {
+    onUploadComplete(selectedImage); // <-- send the File object
+  }
+};
 
   if (isLoading) {
     return (
@@ -81,10 +84,10 @@ const ImageUploader = ({ onUploadComplete, isLoading }) => {
           className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
         />
         
-        {selectedImage ? (
+        {preview ? (
           <div className="space-y-4">
             <img 
-              src={selectedImage} 
+              src={preview} 
               alt="Selected cattle" 
               className="max-h-64 mx-auto rounded-lg shadow-md"
             />
