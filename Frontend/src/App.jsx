@@ -10,7 +10,7 @@ const App = () => {
   let PageComponent;
   switch (currentPage) {
     case 'dashboard':
-      PageComponent = <Dashboard />;
+      PageComponent = <Dashboard setCurrentPage={setCurrentPage} />;
       break;
     case 'upload':
       PageComponent = <UploadPage />;
