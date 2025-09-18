@@ -15,7 +15,7 @@ const app = express();
 const upload = multer({ dest: "uploads/" });
 
 // Middleware
-app.use(cors({ origin: "" }));
+app.use(cors());
 app.use(express.json());
 
 mongoose
