@@ -24,7 +24,7 @@ export default function StatsDashboard() {
   const [lowConfidence, setLowConfidence] = useState([]);
   const [owners, setOwners] = useState([]);
   const [monthly, setMonthly] = useState([]);
-  const API = import.meta.env.VITE_APP_API_URL;
+  const API = "https://cattle-breed-recognition.onrender.com";
 
   const fetchAll = async () => {
     setLoading(true);
