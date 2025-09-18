@@ -15,7 +15,7 @@ const Upload = () => {
       formData.append("image", uploadedImage);
 
       const response = await fetch(
-        `${import.meta.env.VITE_APP_API_URL}/api/breed/recognize`,
+        `https://cattle-breed-recognition.onrender.com/api/breed/recognize`,
         {
           method: "POST",
           body: formData,
@@ -56,7 +56,7 @@ const Upload = () => {
       formData.append("image", uploadedImage);
 
       const response = await fetch(
-        `${import.meta.env.VITE_APP_API_URL}/api/breed/roboflow`,
+        `https://cattle-breed-recognition.onrender.com/api/breed/roboflow`,
         {
           method: "POST",
           body: formData,
