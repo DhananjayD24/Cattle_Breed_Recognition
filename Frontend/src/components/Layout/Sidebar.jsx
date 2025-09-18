@@ -18,7 +18,7 @@ const Sidebar = ({ isOpen, setSidebarOpen, currentPage, setCurrentPage }) => {
       {/* Overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-45"
+          className="fixed inset-0 bg-gray-800 opacity-70 z-45"
           onClick={() => setSidebarOpen(false)}
         />
       )}
@@ -30,7 +30,7 @@ const Sidebar = ({ isOpen, setSidebarOpen, currentPage, setCurrentPage }) => {
         }`}
       >
         {/* Menu items */}
-        <nav className="mt-6 px-3 space-y-2">
+        <nav className="mt-16 px-3 space-y-2">
           {menuItems.map((item) => {
             const Icon = item.icon;
             return (
